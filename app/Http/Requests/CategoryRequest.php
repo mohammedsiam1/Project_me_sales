@@ -41,7 +41,13 @@ class CategoryRequest extends FormRequest
                 case 'PUT':
                     {
                     return [
-                        //
+                        'name'=>'required|string|unique:categories,name,'.$this->route()->category->id,
+                        'slug'=>'required|unique:categories,slug,'.$this->route()->category->id,
+                        'image'=>'nullable|mimes:jpg,png',
+            
+                        'meta_title'=>'required|string',
+                        'meta_keyword'=>'required|string',
+                        'meta_description'=>'required|string',
 
                     ];
                 }

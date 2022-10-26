@@ -22,9 +22,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::resource('/categories', CategoriesController::class);
+Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
+    Route::get('dashboard', [DashboardController::class, 'index']);
+    Route::resource('categories', CategoriesController::class);
 
 });
 

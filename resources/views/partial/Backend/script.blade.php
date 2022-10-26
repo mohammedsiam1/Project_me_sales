@@ -19,4 +19,5 @@
     <script src="{{asset('assets/Backend/js/dataTables.bootstrap4.js')}}"></script>
     <!-- End custom js for this page-->
 
-    <script src="{{asset('assets/Backend/js/jquery.cookie.js')}}" type="text/javascript"></script>
+    <script src="{{asset('assets/Backend/js/jquery.cookie.js')}}" type="text/javascript"></script> 
+     <script src="https://example.com/fontawesome/v6.2.0/js/fontawesome.js" data-auto-replace-svg="nest"></script>
