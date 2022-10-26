@@ -19,7 +19,7 @@ class Index extends Component
 
     public function deleteCategory(){
         $category=Category::findOrFail($this->categoryId);
-        $path='Categories/Images'.$category->image;
+        $path='Categories/Images/'.$category->image;
         if(File::exists($path)){
             File::delete($path);
         }

@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Backend\Brand\Index;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\Brands\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::resource('categories', CategoriesController::class);
+    Route::get('brands', Index::class);
 
 });
 
