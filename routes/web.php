@@ -6,6 +6,7 @@ use App\Http\Livewire\Backend\Brand\Index;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\Brands\BrandController;
+use App\Http\Controllers\Admin\Products\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
+    // Routes For Backend
 Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::resource('categories', CategoriesController::class);
     Route::get('brands', Index::class);
+    Route::get('brands/edit/{brand}', [BrandController::class,'edit'])->name('brand.edit');
+    Route::resource('products', ProductController::class);
 
 });
 

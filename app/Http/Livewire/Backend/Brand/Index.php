@@ -19,6 +19,7 @@ class Index extends Component
         $this->name=null;
         $this->slug=null;
         $this->status=null;
+        $this->brandId=null;
     }
     public function rules(){
         return[
@@ -34,16 +35,33 @@ class Index extends Component
             'slug'=>Str::slug($this->slug),
             'status'=>$this->status ? 1 : 0,
         ]);
-        $this->restInput();
         $this->dispatchBrowserEvent('close-modal');
-       return redirect()->with('message','Brand Created');
+        $this->restInput();
+
     }
     public function deleteBrand($brandId){
          $this->brandId=$brandId;
     }
     public function deleteBrandFromModal(){
           Brand::findOrFail($this->brandId)->delete();
-            session()->flash('message','Delete Success');
+    }
+
+    public function editBrand(Brand $brand){
+            $this->brandId=$brand->id;
+            $this->name=$brand->name;
+            $this->slug=$brand->slug;
+            $this->status=$brand->status;
+    }
+    public function UpdateBrand(){
+        $this->validate();
+        Brand::find($this->brandId)->update([
+            'name'=>$this->name,
+            'slug'=>Str::slug($this->slug),
+            'status'=>$this->status ? 1 : 0,
+        ]);
+        $this->dispatchBrowserEvent('close-modal');
+        $this->restInput();
+
     }
     
     public function render()

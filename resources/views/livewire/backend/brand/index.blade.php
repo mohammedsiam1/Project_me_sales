@@ -1,7 +1,7 @@
-<div>   
-
-@include('livewire.backend.brand.Addmodal')
-@include('livewire.backend.brand.deletemodel')
+<div>
+@include('livewire.backend.brand.AddBrand')
+@include('livewire.backend.brand.deleteBrand')
+@include('livewire.backend.brand.editBrand')
 <div class="row">
     <div class="col-md-12 grid-margin">
         <div class="d-flex justify-content-between flex-wrap">
@@ -14,7 +14,7 @@
                 <a data-bs-toggle="modal"  data-bs-target="#AddBrandModal" class="btn btn-primary col-sm">Add brand</a>
             </div>
         </div>
-        <hr>
+        <hr>  
     </div>
 </div>
 <div class="card">
@@ -37,8 +37,8 @@
       <td>{{$brand->slug}}</td>
       <td>{{$brand->status?'visible':'disabled'}}</td>
       <td>
-        <a href="{{route('categories.edit',$brand->id)}}" class="btn btn-warning btn-lg"><i class="fa fa-edit"></i></a>
-        <a type="button" wire:click="deleteBrand({{$brand->id}})" class="btn btn-danger btn-lg"data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa fa-trash"></i></a>
+        <a  wire:click="editBrand({{$brand->id}})" data-bs-toggle="modal" data-bs-target="#editBrandModal"   class="btn btn-warning btn-lg"><i class="fa fa-edit"></i></a>
+        <a  wire:click="deleteBrand({{$brand->id}})" class="btn btn-danger btn-lg"data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa fa-trash"></i></a>
       </td>
     </tr>
   </tbody>
@@ -54,6 +54,8 @@
 <script>
 window.addEventListener('close-modal',event =>{
   $('#AddBrandModal').modal('hide');
+  $('#editBrandModal').modal('hide');
+  $('#deleteModal').modal('hide');
 });  
 </script>
 @endsection

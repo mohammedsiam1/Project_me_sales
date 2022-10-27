@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Brands;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -14,7 +15,6 @@ class BrandController extends Controller
      */
     public function index()
     {
-       return view('livewire.backend.brand.index');
     }
 
     /**
@@ -55,9 +55,8 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Brand $brand)
     {
-        //
     }
 
     /**
