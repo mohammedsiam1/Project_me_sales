@@ -6,6 +6,7 @@ use App\Http\Livewire\Backend\Brand\Index;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\Brands\BrandController;
+use App\Http\Controllers\Admin\Colors\ColorController;
 use App\Http\Controllers\Admin\Products\ProductController;
 
 /*
@@ -35,6 +36,8 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::get('products/delete/{id}', [ProductController::class,'destroy'])->name('products.delete');
     Route::get('deleteImage/{id}', [ProductController::class,'deleteImageProduct'])->name('deleteImage');
 
+    Route::resource('colors', ColorController::class);
+    Route::get('delete/Color/{id}', [ColorController::class,'destroy'])->name('delete.color');
 
 });
 
