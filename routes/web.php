@@ -32,6 +32,9 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::get('brands', Index::class);
     Route::get('brands/edit/{brand}', [BrandController::class,'edit'])->name('brand.edit');
     Route::resource('products', ProductController::class);
+    Route::get('products/delete/{id}', [ProductController::class,'destroy'])->name('products.delete');
+    Route::get('deleteImage/{id}', [ProductController::class,'deleteImageProduct'])->name('deleteImage');
+
 
 });
 

@@ -40,7 +40,14 @@ class ProductRequest extends FormRequest
             case 'PUT':
             case 'POST': {
                     return [
-                        //
+                        'category_id'=>'required',
+                        'name'=>'required|string',
+                        'slug'=>'required|string',
+                        'short_description'=>'nullable',
+                        'description'=>'nullable',
+                        'original_price'=>'required|numeric',
+                        'selling_price'=>'required|numeric',
+                        'quantity'=>'required|numeric',
                     ];
                 }
         }

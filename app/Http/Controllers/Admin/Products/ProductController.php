@@ -5,29 +5,22 @@ namespace App\Http\Controllers\Admin\Products;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ImageProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\Backend\ProductRequest;
-use App\Http\Controllers\Admin\Products\ProductController;
-use App\Models\ImageProduct;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
-        dd('index');
+        $products=Product::with('category')->get();
+        return view('Backend.Product.index',compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function create()
     {
         $categories=Category::all();
@@ -35,12 +28,7 @@ class ProductController extends Controller
         return view('Backend.Product.create',compact('categories','brands'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(ProductRequest $request)
     {
         $product=Product::create([
@@ -65,7 +53,7 @@ class ProductController extends Controller
             $path='Upload/Products/Images';
             $extension=time().$i++.'.'.$image->extension();
             $image->move($path,$extension);
-            $image_product=ImageProduct::create([
+            $product->productImages()->create([
                 'product_id'=>$product->id,
                 'image'=>$extension,
             ]);
@@ -75,48 +63,79 @@ class ProductController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        dd('ok show');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+ 
+    public function edit(Product $product)
     {
-        //
+        $categories=Category::all();
+        $brands=Brand::all();
+        return view ('Backend.Product.edit',compact('product','categories','brands'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $product->update([
+            'category_id'=>$request->category_id,
+            'name'=>$request->name,
+            'slug'=>$request->slug,
+            'short_description'=>$request->short_description,
+            'description'=>$request->description,
+            'brand'=>$request->brand,
+            'original_price'=>$request->original_price,
+            'selling_price'=>$request->selling_price,
+            'quantity'=>$request->quantity,
+            'status'=>$request->description?1:0,
+            'trending'=>$request->trending?1:0,
+            'meta_title'=>$request->meta_title,
+            'meta_keyword'=>$request->meta_keyword,
+            'meta_description'=>$request->meta_description,
+        ]);
+        if($images=$request->file('image')){
+            $i=1;
+            foreach($images as $image){
+            $path='Upload/Products/Images';
+            $extension=time().$i++.'.'.$image->extension();
+            $image->move($path,$extension);
+            $product->productImages()->create([
+                'product_id'=>$product->id,
+                'image'=>$extension,
+            ]);
+        }
+        }
+        $product->save();
+        return redirect()->route('products.index')->with('message','Update product successful');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+       $Product=Product::findOrFail($id);
+       if($Product->productImages){
+        foreach($Product->productImages as $image){
+           $image->delete();
+           if(File::exists('Upload/Products/Images/'.$image->image)){
+            File::delete('Upload/Products/Images/'.$image->image);
+           }
+        }
+       }
+       $Product->delete();
+       return redirect()->back()->with('message','deleted product successful');
+
+
+    }
+    public function deleteImageProduct($id){
+         $imageProduct =ImageProduct::findOrFail($id);
+       if(File::exists('Upload/Products/Images/'.$imageProduct->image)){
+            File::delete('Upload/Products/Images/'.$imageProduct->image);
+       }
+       $imageProduct->delete();
+       return redirect()->back()->with('message','Deleted image successful');
+
     }
 }
