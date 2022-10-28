@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\Backend\ProductRequest;
+use App\Models\Color;
 
 class ProductController extends Controller
 {
@@ -25,7 +26,8 @@ class ProductController extends Controller
     {
         $categories=Category::all();
         $brands=Brand::all();
-        return view('Backend.Product.create',compact('categories','brands'));
+        $colors=Color::whereStatus(1)->get();
+        return view('Backend.Product.create',compact('categories','brands','colors'));
     }
 
 
@@ -58,6 +60,15 @@ class ProductController extends Controller
                 'image'=>$extension,
             ]);
         }
+        }
+        if($colors=$request->colors){
+            foreach($colors as $key =>$color){
+                $product->productColors()->create([
+                    'product_id'=>$product->id,
+                    'color_id'=>$color,
+                    'quantity'=>$request->colorquantity[$key]??0
+                ]); 
+            }
         }
         return redirect()->back()->with('message','created product successful');
 
