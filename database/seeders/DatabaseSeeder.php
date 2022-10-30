@@ -7,7 +7,9 @@ use Faker\Factory;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Database\Seeders\ColorSeeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\CategoriesSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +27,8 @@ class DatabaseSeeder extends Seeder
          User::create(['first_name'=>$factory->firstName,'last_name'=>$factory->lastName,'email'=>$factory->unique()->safeEmail,'password'=>bcrypt('123123123'),'phone'=>$factory->unique()->numberBetween(100000,9999999),'remember_token'=>Str::random(10),'status'=>1,]);
         }
         User::create(['first_name'=>'mohammed','last_name'=>'siam','email'=>'moh@gmail.com','password'=>bcrypt('123123123'),'phone'=>$factory->unique()->numberBetween(100000,9999999),'remember_token'=>Str::random(10),'status'=>0,]);
-
+        $this->call(ColorSeeder::class);
+        $this->call(CategoriesSeeder::class);
+        $this->call(BrandSeeder::class);
     }
 }

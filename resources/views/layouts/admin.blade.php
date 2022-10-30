@@ -54,9 +54,10 @@
         </div>
     </div>
     @include('partial.Backend.script')
-    
+    @yield('scripts')
+
     @livewireScripts
-    @yield('script')
+   
 </body>
 
 </html>

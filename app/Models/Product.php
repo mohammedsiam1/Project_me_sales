@@ -18,7 +18,10 @@ class Product extends Model
     public function productImages(){
         return $this->hasMany(ImageProduct::class);
     }
-    public function productColors(){
+    public function ColorProduct(){
         return $this->hasMany(ProductColor::class);
     }
+
+    
+    
 }

@@ -35,6 +35,8 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::resource('products', ProductController::class);
     Route::get('products/delete/{id}', [ProductController::class,'destroy'])->name('products.delete');
     Route::get('deleteImage/{id}', [ProductController::class,'deleteImageProduct'])->name('deleteImage');
+    Route::post('product-color/{id}', [ProductController::class,'updateColor']);
+    Route::post('delete-product-color/{id}', [ProductController::class,'deleteColor']);
 
     Route::resource('colors', ColorController::class);
     Route::get('delete/Color/{id}', [ColorController::class,'destroy'])->name('delete.color');
