@@ -9,7 +9,7 @@ Create Categories
         <div class="d-flex justify-content-between flex-wrap">
             <div class="d-flex align-items-end flex-wrap">
                 <div class="me-md-3 me-xl-5">
-                    <h2>Create Categories</h2>
+                    <h2>Edit Categories</h2>
                 </div>
 
             </div>

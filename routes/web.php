@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\Brand\Index;
+use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\Brands\BrandController;
@@ -39,6 +40,9 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::post('delete-product-color/{id}', [ProductController::class,'deleteColor']);
 
     Route::resource('colors', ColorController::class);
+
+    Route::resource('sliders', SliderController::class);
+
     Route::get('delete/Color/{id}', [ColorController::class,'destroy'])->name('delete.color');
 
 });
