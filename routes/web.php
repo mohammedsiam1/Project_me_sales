@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\Brand\Index;
-use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Admin\Brands\BrandController;
 use App\Http\Controllers\Admin\Colors\ColorController;
+use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\Products\ProductController;
+use App\Http\Controllers\Frontend\FrontCategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +26,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/home', [FrontendController::class, 'index'])->name('home');
+Route::get('/', [FrontendController::class, 'index']);
 
     // Routes For Backend
 Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
@@ -38,13 +40,15 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::get('deleteImage/{id}', [ProductController::class,'deleteImageProduct'])->name('deleteImage');
     Route::post('product-color/{id}', [ProductController::class,'updateColor']);
     Route::post('delete-product-color/{id}', [ProductController::class,'deleteColor']);
-
     Route::resource('colors', ColorController::class);
-
     Route::resource('sliders', SliderController::class);
-
     Route::get('delete/Color/{id}', [ColorController::class,'destroy'])->name('delete.color');
-
 });
+
+    // Route For Frontend
+    Route::prefix('user/')->group(function (){
+        Route::resource('category', FrontCategoriesController::class);
+        Route::get('showProduct/{category_slug}/{product_slug}', [FrontCategoriesController::class,'showProduct']);
+    });
 
 });

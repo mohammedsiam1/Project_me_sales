@@ -61,8 +61,8 @@ Products
       <td>{{$product->status?'visible':'disable'}}</td>
       <td>{{$product->trending?'trending':'not trending'}}</td>
       <td class="text-danger">$ {{$product->selling_price}}</td>
-      <td ><a href="{{route('products.edit',$product->id)}}" class="btn btn-warning btn-lg"><i class="fa fa-edit"></i></a>
-           <a href="{{route('products.delete',$product->id)}}"  data-method="delete" onClick="return confirm('are you sure to remove this product ?') "class="btn btn-danger btn-lg"><i class="fa fa-trash"></i></a>
+      <td ><a href="{{route('products.edit',$product->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+           <a href="{{route('products.delete',$product->id)}}"  data-method="delete" onClick="return confirm('are you sure to remove this product ?') "class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
      </td>
     </tr>
     @empty

@@ -15,6 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
 
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets/Backend/vendors/mdi/css/materialdesignicons.min.css')}}">
