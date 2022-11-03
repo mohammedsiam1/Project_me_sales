@@ -3,28 +3,31 @@
 namespace App\Http\Livewire\Backend\Brand;
 
 use App\Models\Brand;
-use Illuminate\Contracts\Session\Session as SessionSession;
 use Livewire\Component;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Contracts\Session\Session as SessionSession;
 
 class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $name, $slug ,$status ,$brandId;
+    public $name, $slug ,$status ,$brandId,$category;
 
     public function restInput(){
         $this->name=null;
         $this->slug=null;
         $this->status=null;
+        $this->category=null;
         $this->brandId=null;
     }
     public function rules(){
         return[
         'name'=>'required|string',
         'slug'=>'required|string',
+        'category'=>'required|integer',
         'status'=>'nullable',
         ];
     }
@@ -33,6 +36,7 @@ class Index extends Component
         Brand::create([
             'name'=>$this->name,
             'slug'=>Str::slug($this->slug),
+            'category_id'=>$this->category,
             'status'=>$this->status ? 1 : 0,
         ]);
         $this->dispatchBrowserEvent('close-modal');
@@ -49,6 +53,7 @@ class Index extends Component
     public function editBrand(Brand $brand){
             $this->brandId=$brand->id;
             $this->name=$brand->name;
+            $this->category=$brand->category_id;
             $this->slug=$brand->slug;
             $this->status=$brand->status;
     }
@@ -56,6 +61,7 @@ class Index extends Component
         $this->validate();
         Brand::find($this->brandId)->update([
             'name'=>$this->name,
+            'category_id'=>$this->category,
             'slug'=>Str::slug($this->slug),
             'status'=>$this->status ? 1 : 0,
         ]);
@@ -67,7 +73,8 @@ class Index extends Component
     public function render()
     {
         $brand=Brand::orderBy('id','DESC')->paginate(10);
-        return view('livewire.backend.brand.index',['brands'=>$brand])
+        $categories=Category::whereStatus(1)->get();
+        return view('livewire.backend.brand.index',['brands'=>$brand,'categories'=>$categories])
         ->extends('layouts.admin')->
           section('content');
     }

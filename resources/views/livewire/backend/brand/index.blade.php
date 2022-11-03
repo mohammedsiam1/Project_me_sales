@@ -24,6 +24,7 @@
     <tr>
       <th class="text-primary">#</th>
       <th class="text-primary">Name</th>
+      <th class="text-primary">Category</th>
       <th class="text-primary">Slug</th>
       <th class="text-primary">Status</th>
       <th class="text-primary">Action</th>
@@ -34,6 +35,11 @@
     <tr>
       <th scope="row">{{ $loop->index+1}}</th>
       <td>{{$brand->name}}</td>
+      @if($brand->category)
+      <td>{{$brand->category->name}}</td>
+      @else 
+      <td>No Category</td>
+      @endif
       <td>{{$brand->slug}}</td>
       <td>{{$brand->status?'visible':'disabled'}}</td>
       <td>

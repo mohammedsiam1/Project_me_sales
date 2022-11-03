@@ -11,6 +11,15 @@
         Add New Brand?
       </div>
       <div class="modal-body">
+        <label>Category</label>
+        <select class="form-control" type="text" wire:model.defer="category">
+          @foreach($categories as $category)
+          <option value="{{$category->id}}">{{$category->name}}</option>
+          @endforeach
+        </select>
+        @error('category')<small class="text-danger">{{$message}}</small>@enderror
+      </div>
+      <div class="modal-body">
         <label>Name</label>
         <input class="form-control" type="text" wire:model="name">
         @error('name')<small class="text-danger">{{$message}}</small>@enderror
