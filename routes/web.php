@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Colors\ColorController;
 use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\Products\ProductController;
 use App\Http\Controllers\Frontend\FrontCategoriesController;
+use App\Http\Controllers\Frontend\WishListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::prefix('user/')->group(function (){
         Route::resource('category', FrontCategoriesController::class);
         Route::get('showProduct/{category_slug}/{product_slug}', [FrontCategoriesController::class,'showProduct']);
+        Route::get('whishlist', [WishListController::class,'index'])->name('whishlist');
     });
 
 });
