@@ -37,8 +37,20 @@ class FrontCategoriesController extends Controller
         }
     
     }
-    public function showProduct($slug){
-        dd($slug);
+    public function showProduct($categorySlug,$productSlug){
+        $category=Category::whereSlug($categorySlug)->whereStatus(1)->first();
+        if($category){
+            $product=$category->products()->whereSlug($productSlug)->whereStatus(1)->first();
+        
+        if($product){
+            return view('Frontend.Collection.Products.show',compact('product','category'));
+        }else{
+            return redirect()->back();
+        }
+    }
+        else{
+            return redirect()->back();
+        }
     }
 
     public function edit($id)
