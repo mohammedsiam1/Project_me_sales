@@ -11,11 +11,10 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 class Whishlist extends Component
 {
     use LivewireAlert;
-    public $products;
     public function removeProductWishlist($productId){
         
       Wishlist::where('User_id' ,auth()->user()->id)->where('id',$productId)->delete();
-            
+                $this->emit('updateWishlistCount');
             return $this->alert('success','product deleted successfully');
       
     }

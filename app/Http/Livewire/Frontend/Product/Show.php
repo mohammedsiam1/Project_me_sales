@@ -26,6 +26,7 @@ class Show extends Component
                     'user_id'=>auth()->user()->id,
                     'product_id'=>$productId,
                 ]);
+                $this->emit('updateWishlistCount');
                 if($productWhishList)
                 return $this->alert('success','product added in wishList ');
             }
