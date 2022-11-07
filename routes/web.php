@@ -3,15 +3,16 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\Brand\Index;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Admin\Brands\BrandController;
 use App\Http\Controllers\Admin\Colors\ColorController;
 use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\Products\ProductController;
 use App\Http\Controllers\Frontend\FrontCategoriesController;
-use App\Http\Controllers\Frontend\WishListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +51,10 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::prefix('user/')->group(function (){
         Route::resource('category', FrontCategoriesController::class);
         Route::get('showProduct/{category_slug}/{product_slug}', [FrontCategoriesController::class,'showProduct']);
-        Route::get('whishlist', [WishListController::class,'index'])->name('whishlist');
     });
-
+    Route::middleware('auth')->group(function (){
+    Route::get('whishlist', [WishListController::class,'index'])->name('whishlist');
+    Route::get('cart', [CartController::class,'cart'])->name('cart');
+    Route::get('checkout', [CartController::class,'checkout'])->name('checkout');
+});
 });
