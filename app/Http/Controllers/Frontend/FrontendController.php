@@ -19,7 +19,9 @@ class FrontendController extends Controller
         $sliders=Slider::whereStatus(1)->get();
         return view('Frontend.Slider.index',compact('sliders'));
     }
-    
+    public function thank_you(){
+        return view ('Frontend.Collection.Thank_you.thank_you');
+    }
     public function create()
     {
         //

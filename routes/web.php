@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Brands\BrandController;
 use App\Http\Controllers\Admin\Colors\ColorController;
 use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\Products\ProductController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontCategoriesController;
 
 /*
@@ -55,6 +56,8 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::middleware('auth')->group(function (){
     Route::get('whishlist', [WishListController::class,'index'])->name('whishlist');
     Route::get('cart', [CartController::class,'cart'])->name('cart');
-    Route::get('checkout', [CartController::class,'checkout'])->name('checkout');
 });
+    Route::get('checkout', [CheckoutController::class,'index'])->name('checkout');
+    Route::get('thank_you', [FrontendController::class,'thank_you'])->name('thank.you');
+    
 });

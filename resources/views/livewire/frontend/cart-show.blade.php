@@ -76,11 +76,10 @@
                     </div>
                 </div>
             </div>
-
+            @if($productsCart != null)
             <div class="row">
                 <div class="col-md-8 my-md-auto- mt-3">
                     Get the best deals & offers <a href="{{url('user/category')}}">shop now</a>
-
                 </div>
                 <div class="col-md-4 mt-3">
                     <div class="shadow-sm bg-white p-3">
@@ -92,5 +91,6 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
