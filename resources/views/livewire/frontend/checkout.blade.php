@@ -107,7 +107,6 @@
       paypal.Buttons({
         // Sets up the transaction when a payment button is clicked
                 onClick: function()  {
-
             // Show a validation error if the checkbox is not checked
             if (!document.getElementById('fullname').value 
             || !document.getElementById('phone').value 
@@ -118,13 +117,11 @@
                 Livewire.emit('validationForAll')
                 return false;
             }else{
-                
                 @this.set('fullname', document.getElementById('fullname').value);
                 @this.set('phone', document.getElementById('phone').value);
                 @this.set('email', document.getElementById('email').value);
                 @this.set('pincode', document.getElementById('pincode').value);
                 @this.set('address', document.getElementById('address').value);
-
             }
             },
         createOrder: (data, actions) => {
