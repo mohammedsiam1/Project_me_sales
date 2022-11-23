@@ -14,6 +14,25 @@ class Checkout extends Component
     use LivewireAlert;
     public $carts ,$totalProductAmount=0 ,$fullname,$phone,$email,$pincode,$address ,$paymentMode =null ,$payment_id=null;
 
+    protected $listeners=[
+        'validationForAll',
+        'CompletePayment'=>'PayWithPaypal'
+    ];
+    public function PayWithPaypal($id){
+        $this->payment_id=$id;
+        $this->paymentMode="Paid by paypal";
+        $codOrder=$this->placeOrder();
+        if($codOrder){
+            Cart::whereUser_id(auth()->user()->id)->delete();
+            return redirect()->route('thank.you');
+            $this->alert('success','order placed successfully');
+        }else{
+            $this->alert('error','something is wrong !');
+        }
+        }
+    public function validationForAll(){
+        $this->validate();
+    }
     public function rules(){
         return[
             'fullname'=>'required|string|max:121',
@@ -90,7 +109,8 @@ class Checkout extends Component
         $this->email=auth()->user()->email;
       $totalProductAmount=  $this->totalProductAmount=$this->totalProductAmount();
         return view('livewire.frontend.checkout',[
-            'totalProductAmount'=>$totalProductAmount
+            'totalProductAmount'=>$totalProductAmount,
+            
         ]);
     }
 }
