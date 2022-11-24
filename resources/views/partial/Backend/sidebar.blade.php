@@ -8,6 +8,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{route('order.admin')}}">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Orders</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{url('admin/categories')}}">
               <i class="mdi mdi-home menu-icon"></i>
               <span class="menu-title">Categories</span>

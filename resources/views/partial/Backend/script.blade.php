@@ -20,5 +20,4 @@
     <!-- End custom js for this page-->
 
     <script src="{{asset('assets/Backend/js/jquery.cookie.js')}}" type="text/javascript"></script> 
-     <script src="https://example.com/fontawesome/v6.2.0/js/fontawesome.js" data-auto-replace-svg="nest"></script>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>

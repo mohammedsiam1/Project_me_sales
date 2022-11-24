@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Admin\Brands\BrandController;
 use App\Http\Controllers\Admin\Colors\ColorController;
 use App\Http\Controllers\Admin\Slider\SliderController;
+use App\Http\Controllers\Admin\Order\OrderAdminController;
 use App\Http\Controllers\Admin\Products\ProductController;
 use App\Http\Controllers\Frontend\FrontCategoriesController;
 
@@ -47,6 +48,8 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::resource('colors', ColorController::class);
     Route::resource('sliders', SliderController::class);
     Route::get('delete/Color/{id}', [ColorController::class,'destroy'])->name('delete.color');
+    Route::get('order_panel', [OrderAdminController::class,'index'])->name('order.admin');
+    Route::get('show/order_panel/{id}', [OrderAdminController::class,'show'])->name('show.order.admin');
 });
 
     // Route For Frontend

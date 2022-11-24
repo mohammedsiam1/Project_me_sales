@@ -50,7 +50,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
-                                <a class="dropdown-item" href="#"><i class="fa fa-list"></i> My Orders</a>
+                                <a class="dropdown-item" href="{{route('order')}}"><i class="fa fa-list"></i> My Orders</a>
                                <a class="dropdown-item" href="#"><i class="fa fa-heart"></i> My Wishlist</a>
                                 <a class="dropdown-item" href="#"><i class="fa fa-shopping-cart"></i> My Cart</a>
 

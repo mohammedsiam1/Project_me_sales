@@ -15,7 +15,6 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
 
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets/Backend/vendors/mdi/css/materialdesignicons.min.css')}}">
@@ -55,6 +54,8 @@
         </div>
     </div>
     @include('partial.Backend.script')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     @yield('scripts')
 
     @livewireScripts
