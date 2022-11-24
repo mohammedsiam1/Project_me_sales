@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('product_id');
             $table->foreignId('color_product_id')->nullable();
             $table->integer('qty');
+
             $table->integer('price');
             $table->timestamps();
         });
