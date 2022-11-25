@@ -50,6 +50,8 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::get('delete/Color/{id}', [ColorController::class,'destroy'])->name('delete.color');
     Route::get('order_panel', [OrderAdminController::class,'index'])->name('order.admin');
     Route::get('show/order_panel/{id}', [OrderAdminController::class,'show'])->name('show.order.admin');
+    Route::put('show/update/{id}', [OrderAdminController::class,'updateOrder'])->name('update.order');
+
 });
 
     // Route For Frontend

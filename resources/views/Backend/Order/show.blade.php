@@ -44,13 +44,13 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Item ID  </th>
+                                    <th>Item ID </th>
                                     <th>Image</th>
                                     <th>Product</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total </th>
-                                   
+
 
                                 </tr>
                             </thead>
@@ -63,39 +63,70 @@
                                     <td width="10%">{{$order_item->id}}</td>
                                     <td width="10%">
                                         @if($order_item->product->productImages)
-                                            <img src="{{asset('Upload/Products/Images/'.$order_item->product->productImages[0]->image)}}"
-                                             style="width: 50px; height: 50px" alt="">
-                                             @else 
-                                             <img src="" style="width: 50px; height: 50px" alt="">
-                                            @endif
+                                        <img src="{{asset('Upload/Products/Images/'.$order_item->product->productImages[0]->image)}}" style="width: 50px; height: 50px" alt="">
+                                        @else
+                                        <img src="" style="width: 50px; height: 50px" alt="">
+                                        @endif
                                     </td>
 
                                     <td>
-                                    {{$order_item->product->name}}
-                                            @if($order_item->ColorProduct)
-                                           <span class="text-danger"> Colors: {{$order_item->ColorProduct->Color->name}}</span>
-                                            @endif
+                                        {{$order_item->product->name}}
+                                        @if($order_item->ColorProduct)
+                                        <span class="text-danger"> Colors: {{$order_item->ColorProduct->Color->name}}</span>
+                                        @endif
                                     </td>
                                     <td width="10%">{{$order_item->qty}}</td>
                                     <td width="10%">{{$order_item->price}}</td>
                                     <td width="10%" class="fw-bold"> ${{$order_item->qty * $order_item->price}}</td>
                                     @php
-                                $totalPrice += $order_item->qty * $order_item->price;
-                                @endphp
+                                    $totalPrice += $order_item->qty * $order_item->price;
+                                    @endphp
                                 </tr>
-                     
+
                                 @endforeach
                                 <tr>
-                                    <td colspan=5  class="fw-bold">Total Amount</td>
+                                    <td colspan=5 class="fw-bold">Total Amount</td>
                                     <td colspan=1 class="fw-bold">${{$totalPrice}}</td>
                                 </tr>
                             </tbody>
                         </table>
-                    
+
                     </div>
                 </div>
             </div>
         </div>
+        <br>
+        
+            <div class="card">
+                <div class="card-body">
+                    <h4>Order progress (Order Status Update)</h4>
+                    <hr>
+                    <form action="{{route('update.order',$order->id)}}" method="post">
+
+                    <div class="row">
+                        @csrf
+                        @method('PUT')
+                        <div class="col-md-4">
+                            <label>Update Progress </label>
+                             <select name="order_progress" class="form-control">
+                        <option value="in progress" @if (old('in progress')) {{ 'selected' }} @endif>in progress</option>
+                        <option value="completed" @if (old('completed')) {{ 'selected' }} @endif>completed</option>
+                        <option value="pending" @if (old('pending')) {{ 'selected' }} @endif>pending</option>
+                        <option value="canceled" @if (old('canceled')) {{ 'selected' }} @endif>canceled</option>
+                        <option value="out of delivery" @if (old('out of delivery')) {{ 'selected' }} @endif>out of delivery</option>
+                             </select>
+                        </div>
+                        <div class="col-md-4"><br>
+                        <button type="submit" class="btn btn-primary">update status</button>
+                        </div>
+                        <div class="col-md-4">
+                        <span class="text-bold">Progress Status Message is : <br><span class="text-danger text-uppercase">{{$order->status_message}}</span></span>
+                        </div>
+                    </div>
+                </form>
+                    
+                </div>
+            </div>
     </div>
 </div>
 @endsection

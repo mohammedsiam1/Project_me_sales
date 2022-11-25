@@ -11,9 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class OrderAdminController extends Controller
 {
     public function index(){
-        $orderDate=Carbon::now();
-        $orders=Order::whereDate('created_at',$orderDate)->paginate(10);
-        return view('Backend.Order.index',compact('orders'));
+       
+        return view('Backend.Order.index');
     }
     public function show($id){
         $order=Order::whereId($id)->first();
@@ -22,4 +21,20 @@ class OrderAdminController extends Controller
         else
         return redirect()->back()->with('message','No Order Found');
     }
+    public function updateOrder(Request $request ,$id){
+        if($request->order_progress != null){
+        $order=Order::whereId($id)->first();
+        if($order){
+            $order->update([
+                'status_message'=>$request->order_progress,
+            ]);
+            return redirect()->back()->with('message','Updated successfully');
+        }
+        else
+        return redirect()->back()->with('message','No Order Found');
+    
+    }else{
+        return redirect()->back()->with('message','please enter status');
+    }
+}
 }
