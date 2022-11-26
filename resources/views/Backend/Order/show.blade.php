@@ -9,7 +9,9 @@
                 <div class="shadow bg-white p-3">
                     <h4 class=" text-primary">
                         My Order Details
-                        <a href="{{route('order.admin')}}" class="btn btn-danger btn-sm float-end ">Back</a>
+                        <a  href="{{route('order.admin')}}" class="btn btn-outline-danger btn-sm  float-end ">Back</a> 
+                        <a style="margin-right:6px" target="_blank" href="{{route('order_show_invoices.admin',$order->id)}}" class="btn btn-outline-warning btn-sm  float-end ">View Invoices</a>
+                        <a style="margin-right:6px" href="{{route('order_download_invoices.admin',$order->id)}}" class="btn btn-outline-success btn-sm float-end ">Download Invoices</a>
                     </h4>
                     <hr>
                     <div class="row">

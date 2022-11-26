@@ -51,6 +51,11 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::get('order_panel', [OrderAdminController::class,'index'])->name('order.admin');
     Route::get('show/order_panel/{id}', [OrderAdminController::class,'show'])->name('show.order.admin');
     Route::put('show/update/{id}', [OrderAdminController::class,'updateOrder'])->name('update.order');
+    Route::get('show/invoices/{id}', [OrderAdminController::class,'show_invoices'])->name('order_show_invoices.admin');
+    Route::get('download/invoices/{id}', [OrderAdminController::class,'download_invoices'])->name('order_download_invoices.admin');
+
+    
+
 
 });
 

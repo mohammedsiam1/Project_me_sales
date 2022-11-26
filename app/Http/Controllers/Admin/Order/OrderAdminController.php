@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Order;
 
+use Carbon\Carbon;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class OrderAdminController extends Controller
@@ -35,6 +36,24 @@ class OrderAdminController extends Controller
     
     }else{
         return redirect()->back()->with('message','please enter status');
+    }
+}
+
+    public function show_invoices($id){
+     $order=Order::findOrFail($id);
+     if($order){
+     return view('Backend.Order.show_invoices',compact('order'));
+    }else
+    return redirect()->back()->with('message','No Order Found');
+    }
+    
+    public function download_invoices(  $id){
+        $order=Order::findOrFail($id);
+        if($order){
+            $data=['order'=>$order];
+        $pdf = Pdf::loadView('Backend.Order.show_invoices', $data);
+        $todayDate=Carbon::now()->format('d-m-Y');
+        return $pdf->download('invoice -'.$order->fullname.'-'.$todayDate.'.pdf');
     }
 }
 }
