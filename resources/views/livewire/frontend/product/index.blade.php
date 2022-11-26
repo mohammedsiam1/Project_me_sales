@@ -42,7 +42,7 @@
                             @endif
                             @if($product->productImages->count() >0)
                             <a href="{{url('user/showProduct/'.$product->category->slug.'/'.$product->slug)}}">
-                                <img src="{{asset('Upload/Products/Images/'.$product->productImages[0]->image)}}" alt="{{$product->name}}">
+                                <img style=" height :200px" src="{{asset('Upload/Products/Images/'.$product->productImages[0]->image)}}" alt="{{$product->name}}">
                             </a>
                             @endif
                         </div>

@@ -61,10 +61,18 @@ Home Page
             <div class="item">
                     <div class="product-card" >
                         <div class="product-card-img" >
-                            <label class="stock bg-primary">New</label>
+                        @if($product->selling_price >= 100)
+                            <label class="stock bg-success">
+                                New
+                            </label>
+                            @else 
+                            <label class="stock bg-primary">
+                                New
+                            </label>
+                            @endif
                             @if($product->productImages->count() >0)
                             <a href="{{url('user/showProduct/'.$product->category->slug.'/'.$product->slug)}}">
-                                <img style=" height :220px" src="{{asset('Upload/Products/Images/'.$product->productImages[0]->image)}}" alt="{{$product->name}}">
+                                <img style=" height :200px" src="{{asset('Upload/Products/Images/'.$product->productImages[0]->image)}}" alt="{{$product->name}}">
                             </a>
                             @endif
                         </div>

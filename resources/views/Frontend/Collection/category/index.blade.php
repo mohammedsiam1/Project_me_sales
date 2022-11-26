@@ -14,7 +14,7 @@
                     <div class="category-card">
                         <a href="{{route('category.show',$category->slug)}}">
                             <div class="category-card-img">
-                                <img src="{{asset('Categories/Images/'.$category->image)}}" class="w-100" alt="{{$category->name}}">
+                                <img style=" height :220px" src="{{asset('Categories/Images/'.$category->image)}}" class="w-100" alt="{{$category->name}}">
                             </div>
                             <div class="category-card-body">
                                 <h5>{{$category->name}}</h5>
