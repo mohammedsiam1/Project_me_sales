@@ -6,6 +6,7 @@ use App\Models\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 
 class FrontendController extends Controller
 {
@@ -17,7 +18,8 @@ class FrontendController extends Controller
     public function index()
     {
         $sliders=Slider::whereStatus(1)->get();
-        return view('Frontend.Slider.index',compact('sliders'));
+        $products=Product::whereStatus(1)->whereTrending(1)->latest()->take(15)->get();
+        return view('Frontend.index',compact('sliders','products'));
     }
     public function thank_you(){
         return view ('Frontend.Collection.Thank_you.thank_you');
