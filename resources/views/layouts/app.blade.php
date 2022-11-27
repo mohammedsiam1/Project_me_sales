@@ -30,6 +30,9 @@
     <link href="{{asset('assets/Frontend/navbar.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/Frontend/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/Frontend/owl.theme.default.css')}}">
+        <!-- ex-zoom -->
+    <link href="{{asset('assets/exzoom/jquery.exzoom.css')}}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -39,12 +42,13 @@
             @yield('content')
         </main>
     </div>
+   
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{asset('assets/Frontend/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/exzoom/jquery.exzoom.js')}}"></script>
+    @yield('scripts')
     @livewireScripts
     @stack('scripts')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script src="{{asset('assets/Frontend/owl.carousel.min.js')}}"></script>
-    @yield('scripts')
-
 </body>
 </html>

@@ -16,7 +16,7 @@ class FrontCategoriesController extends Controller
         return view('Frontend.Collection.category.index',compact('categories'));
     
     }
-
+   
   
     public function create()
     {
@@ -67,4 +67,5 @@ class FrontCategoriesController extends Controller
     {
         //
     }
+    
 }
