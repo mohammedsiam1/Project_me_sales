@@ -28,6 +28,7 @@
 
     <link href="{{asset('assets/css.css')}}" rel="stylesheet">
     <link href="{{asset('assets/Frontend/navbar.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/Frontend/footer.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/Frontend/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/Frontend/owl.theme.default.css')}}">
         <!-- ex-zoom -->
@@ -41,6 +42,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        @include('partial.Frontend.footer')
+
     </div>
    
   

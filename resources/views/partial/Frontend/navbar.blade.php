@@ -92,7 +92,7 @@
                             <a class="nav-link" href="{{route('new.arrivals')}}">New Arrivals</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Featured Products</a>
+                            <a class="nav-link" href="{{route('feature')}}">Featured Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Electronics</a>

@@ -21,13 +21,24 @@ class FrontendController extends Controller
         $products=Product::whereStatus(1)->whereTrending(1)->latest()->take(15)->get();
         return view('Frontend.index',compact('sliders','products'));
     }
+
+
     public function newArrivals(){
         $newarrivals=Product::latest()->take(16)->get();
         return view('Frontend.Collection.new_arrivals.index',compact('newarrivals'));
     }
+
+    public function feature(){
+        $features=Product::whereFeaturing(1)->latest()->get();
+        return view('Frontend.Collection.features.index',compact('features'));
+    }
+    
+
     public function thank_you(){
         return view ('Frontend.Collection.Thank_you.thank_you');
     }
+
+
     public function create()
     {
         //

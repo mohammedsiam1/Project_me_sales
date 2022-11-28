@@ -143,6 +143,12 @@ Add Product
                         </div>
                         <div class="col-md-4">
                             <div class="md-3">
+                                <label>Featuring</label>
+                                <input type="checkbox" name="featuring" @if (old('featuring')) {{ 'checked' }} @endif   style="width: 16px; height: 16px;">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="md-3">
                                 <label>Status</label>
                                 <input type="checkbox" name="status" @if (old('status')) {{ 'checked' }} @endif style="width: 16px; height: 16px;">
                             </div>

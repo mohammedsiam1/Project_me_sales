@@ -64,6 +64,7 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
         Route::resource('category', FrontCategoriesController::class);
         Route::get('showProduct/{category_slug}/{product_slug}', [FrontCategoriesController::class,'showProduct']);
         Route::get('new-arrivals', [FrontendController::class,'newArrivals'])->name('new.arrivals');
+        Route::get('feature', [FrontendController::class,'feature'])->name('feature');
     });
     Route::middleware('auth')->group(function (){
     Route::get('whishlist', [WishListController::class,'index'])->name('whishlist');
