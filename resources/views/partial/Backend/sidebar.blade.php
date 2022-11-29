@@ -52,7 +52,12 @@
             </a>
           </li>
        
-        
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('sitting.index')}}">
+              <i class="mdi mdi-chart-pie menu-icon"></i>
+              <span class="menu-title">Sitting</span>
+            </a>
+          </li>
      
          
         </ul>

@@ -4,11 +4,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <h4 class="footer-heading">Factor E-Commerce</h4>
+                        <h4 class="footer-heading">{{$web_sitting->website_name ?? 'Your Website Name'}}</h4>
                         <div class="footer-underline"></div>
                         <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        {{$web_sitting->address ?? 'Your address '}}
                         </p>
                     </div>
                     <div class="col-md-3">
@@ -34,17 +33,17 @@
                         <div class="footer-underline"></div>
                         <div class="mb-2">
                             <p>
-                                <i class="fa fa-map-marker"></i> #444, some main road, some area, some street, bangalore, india - 560077
+                                <i class="fa fa-map-marker"></i> {{ $web_sitting->address ?? 'Your address '}}
                             </p>
                         </div>
                         <div class="mb-2">
                             <a href="" class="text-white">
-                                <i class="fa fa-phone"></i> +972 597742302
+                                <i class="fa fa-phone"></i> {{$web_sitting->phone ?? 'Your Phone '}}
                             </a>
                         </div>
                         <div class="mb-2">
                             <a href="" class="text-white">
-                                <i class="fa fa-envelope"></i> msiam7897@gmail.com
+                                <i class="fa fa-envelope"></i> {{$web_sitting->email ?? 'Your Email '}}
                             </a>
                         </div>
                     </div>

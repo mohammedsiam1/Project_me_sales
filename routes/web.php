@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Colors\ColorController;
 use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\Order\OrderAdminController;
 use App\Http\Controllers\Admin\Products\ProductController;
+use App\Http\Controllers\Admin\sitting\SittingController;
 use App\Http\Controllers\Frontend\FrontCategoriesController;
 
 /*
@@ -54,6 +55,7 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::get('show/invoices/{id}', [OrderAdminController::class,'show_invoices'])->name('order_show_invoices.admin');
     Route::get('download/invoices/{id}', [OrderAdminController::class,'download_invoices'])->name('order_download_invoices.admin');
 
+    Route::resource('sitting', SittingController::class);
     
 
 
