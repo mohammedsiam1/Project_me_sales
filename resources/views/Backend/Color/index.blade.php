@@ -15,7 +15,7 @@ Create Categories
 
             </div>
             <div class="d-flex justify-content-between align-items-end flex-wrap">
-                <a data-bs-toggle="modal" data-bs-target="#AddColorModal" class="btn btn-primary col-sm">Add Color</a>
+                <a data-bs-toggle="modal" data-bs-target="#AddColorModal" class="btn btn-outline-primary col-sm">Add Color</a>
             </div>
         </div>
         <hr>
@@ -41,9 +41,9 @@ Create Categories
       <td>{{$color->code}}</td>
       <td>{{$color->status?'visible':'disabled'}}</td>
       <td>
-      <a   href="{{route('colors.edit',$color->id)}}"   class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+      <a   href="{{route('colors.edit',$color->id)}}"   class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i></a>
 
-        <a   href="{{route('delete.color',$color->id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You sure to remove this color ?') "><i class="fa fa-trash"></i></a>
+        <a   href="{{route('delete.color',$color->id)}}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are You sure to remove this color ?') "><i class="fa fa-trash"></i></a>
       </td>
     </tr>
   </tbody>

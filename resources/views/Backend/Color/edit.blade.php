@@ -14,7 +14,7 @@ Create Categories
 
             </div>
             <div class="d-flex justify-content-between align-items-end flex-wrap">
-                <a href="{{route('colors.index')}}" class="btn btn-primary col-sm">View Color</a>
+                <a href="{{route('colors.index')}}" class="btn btn-outline-primary col-sm">View Color</a>
             </div>
         </div>
         <hr>
@@ -45,7 +45,7 @@ Create Categories
       </div><br><br>
 
       </div>
-      <button type="submit" class="btn btn-primary">Update Color</button>
+      <button type="submit" class="btn btn-outline-primary">Update Color</button>
 
       </form>
 

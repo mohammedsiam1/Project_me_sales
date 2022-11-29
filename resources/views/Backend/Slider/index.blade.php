@@ -14,7 +14,7 @@ Create Categories
 
       </div>
       <div class="d-flex justify-content-between align-items-end flex-wrap">
-        <a data-bs-toggle="modal" data-bs-target="#addSliderModal" class="btn btn-primary col-sm">Add Slider</a>
+        <a data-bs-toggle="modal" data-bs-target="#addSliderModal" class="btn btn-outline-primary col-sm">Add Slider</a>
       </div>
     </div>
     <hr>
@@ -44,11 +44,11 @@ Create Categories
           </td>
           <td>{{$slider->status?'visible':'disabled'}}</td>
           <td>
-            <a href="{{route('sliders.edit',$slider->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+            <a href="{{route('sliders.edit',$slider->id)}}" class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i></a>
             <form action="{{ route('sliders.destroy',$slider->id) }}" method="POST">
               @csrf
               @method("DELETE")
-              <br>     <button type="submit"  class="btn btn-danger btn-sm" onclick="return confirm('Are You sure to remove this slider ?') "><i class="fa fa-trash"></i></b>
+              <br>     <button type="submit"  class="btn btn-outline-danger btn-sm" onclick="return confirm('Are You sure to remove this slider ?') "><i class="fa fa-trash"></i></b>
             </form>
           </td>
         </tr>

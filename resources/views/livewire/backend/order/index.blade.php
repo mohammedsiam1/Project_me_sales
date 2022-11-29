@@ -52,7 +52,7 @@
               <td>{{$order->status_message}}</td>
               <td>{{$order->payment_mode}}</td>
               <td>{{$order->created_at->format('Y-m-d')}}</td>
-              <td><a href="{{route('show.order.admin',$order->id ) }}" class="btn btn-primary btn-sm">View</a></td>
+              <td><a href="{{route('show.order.admin',$order->id ) }}" class="btn btn-outline-primary btn-sm">View</a></td>
             </tr>
             @empty
             <td colspan=7 style="text-align: center;">No Order Yet!</td>

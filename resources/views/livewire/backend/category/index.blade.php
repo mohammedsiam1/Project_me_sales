@@ -30,7 +30,7 @@
               
             </div>
             <div class="d-flex justify-content-between align-items-end flex-wrap">
-                <a href="{{url('admin/categories/create')}}" class="btn btn-primary col-sm">Add Category</a>
+                <a href="{{url('admin/categories/create')}}" class="btn btn-outline-primary col-sm">Add Category</a>
             </div>
         </div>
         <hr>
@@ -61,8 +61,8 @@
       <td>{{$category->status?'visible':'disabled'}}</td>
       <td>{{$category->user_id}}</td>
       <td>
-        <a href="{{route('categories.edit',$category->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-        <a type="button" wire:click="destroyCategory({{$category->id}})" class="btn btn-danger btn-sm"data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa fa-trash"></i></a>
+        <a href="{{route('categories.edit',$category->id)}}" class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i></a>
+        <a type="button" wire:click="destroyCategory({{$category->id}})" class="btn btn-outline-danger btn-sm"data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa fa-trash"></i></a>
       </td>
       
     </tr>

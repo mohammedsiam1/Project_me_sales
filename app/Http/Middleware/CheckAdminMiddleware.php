@@ -16,7 +16,7 @@ class CheckAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->user()->status == 1){
+        if(!auth()->user()->role == 1){
             return $next($request);
 
         }else{

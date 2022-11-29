@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between align-items-end flex-wrap">
-                <a data-bs-toggle="modal"  data-bs-target="#AddBrandModal" class="btn btn-primary col-sm">Add brand</a>
+                <a data-bs-toggle="modal"  data-bs-target="#AddBrandModal" class="btn btn-outline-primary col-sm">Add brand</a>
             </div>
         </div>
         <hr>  
@@ -43,8 +43,8 @@
       <td>{{$brand->slug}}</td>
       <td>{{$brand->status?'visible':'disabled'}}</td>
       <td>
-        <a  wire:click="editBrand({{$brand->id}})" data-bs-toggle="modal" data-bs-target="#editBrandModal"   class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-        <a  wire:click="deleteBrand({{$brand->id}})" class="btn btn-danger btn-sm"data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa fa-trash"></i></a>
+        <a  wire:click="editBrand({{$brand->id}})" data-bs-toggle="modal" data-bs-target="#editBrandModal"   class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i></a>
+        <a  wire:click="deleteBrand({{$brand->id}})" class="btn btn-outline-danger btn-sm"data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa fa-trash"></i></a>
       </td>
     </tr>
   </tbody>

@@ -6,6 +6,7 @@ use App\Http\Livewire\Backend\Brand\Index;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -13,9 +14,9 @@ use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Admin\Brands\BrandController;
 use App\Http\Controllers\Admin\Colors\ColorController;
 use App\Http\Controllers\Admin\Slider\SliderController;
+use App\Http\Controllers\Admin\sitting\SittingController;
 use App\Http\Controllers\Admin\Order\OrderAdminController;
 use App\Http\Controllers\Admin\Products\ProductController;
-use App\Http\Controllers\Admin\sitting\SittingController;
 use App\Http\Controllers\Frontend\FrontCategoriesController;
 
 /*
@@ -56,6 +57,8 @@ Route::prefix('admin/')->middleware('auth','isAdmin')->group(function (){
     Route::get('download/invoices/{id}', [OrderAdminController::class,'download_invoices'])->name('order_download_invoices.admin');
 
     Route::resource('sitting', SittingController::class);
+    Route::resource('user', UserController::class);
+    Route::get('delete/user/{id}', [UserController::class,'destroy'])->name('delete.user');
     
 
 

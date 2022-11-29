@@ -14,7 +14,7 @@ Create Categories
 
             </div>
             <div class="d-flex justify-content-between align-items-end flex-wrap">
-                <a href="{{url('admin/categories')}}" class="btn btn-primary col-sm">Back</a>
+                <a href="{{url('admin/categories')}}" class="btn btn-outline-danger col-sm">Back</a>
             </div>
         </div>
         <hr>
@@ -104,7 +104,7 @@ Create Categories
                 </div> 
                 <div class="col-md-6 mb-3">
 
-                <button type="submit" class="btn btn-primary float-end">Save</button>
+                <button type="submit" class="btn btn-outline-primary float-end">Save</button>
                 
             </div>
             </div>
