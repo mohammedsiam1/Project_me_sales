@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\Brand\Index;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\sitting\SittingController;
 use App\Http\Controllers\Admin\Order\OrderAdminController;
 use App\Http\Controllers\Admin\Products\ProductController;
+use App\Http\Controllers\Frontend\ChangePasswordController;
 use App\Http\Controllers\Frontend\FrontCategoriesController;
 
 /*
@@ -79,5 +80,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         Route::get('user-profile', [UserController::class, 'profile'])->name('edit.user');
         Route::post('update-profile', [UserController::class, 'update'])->name('update.user');
+
+        Route::get('password', [ChangePasswordController::class, 'index'])->name('password.index');
+        Route::post('change-password', [ChangePasswordController::class, 'changePassword']);
     });
 });

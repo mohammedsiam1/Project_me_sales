@@ -6,7 +6,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                 <h4>User Profile</h4>
+                 <h4>User Profile 
+                 <a href="{{route('password.index')}}" class="btn btn-outline-warning float-end">Change Your Password?</a>
+                 </h4>
                      <hr>
             </div>  
             <div class="col-md-10">
