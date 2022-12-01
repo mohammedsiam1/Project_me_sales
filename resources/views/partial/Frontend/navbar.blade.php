@@ -6,9 +6,10 @@
                         <h5 class="brand-name">{{$web_sitting->website_name ?? 'Your Website Name'}}</h5>
                     </div>
                     <div class="col-md-5 my-auto">
-                        <form role="search">
+                        <form method="GET" action="{{route('search.product')}}">
+                            @csrf
                             <div class="input-group">
-                                <input type="search" placeholder="Search your product" class="form-control" />
+                                <input type="search" name="search" value="{{Request::get('search')}}" placeholder="Search your product" class="form-control" />
                                 <button class="btn bg-white" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -49,7 +50,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                               <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                               <a class="dropdown-item" href="{{route('edit.user')}}"><i class="fa fa-user"></i> Profile</a>
                                 <a class="dropdown-item" href="{{route('order')}}"><i class="fa fa-list"></i> My Orders</a>
                                <a class="dropdown-item" href="#"><i class="fa fa-heart"></i> My Wishlist</a>
                                 <a class="dropdown-item" href="#"><i class="fa fa-shopping-cart"></i> My Cart</a>

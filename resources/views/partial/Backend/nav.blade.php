@@ -18,7 +18,7 @@
                <i class="mdi mdi-magnify"></i>
              </span>
            </div>
-           <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+           <input type="text" name="search" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
          </div>
        </li>
      </ul>

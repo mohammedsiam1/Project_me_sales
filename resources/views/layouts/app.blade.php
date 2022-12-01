@@ -39,7 +39,11 @@
     <div id="app">
 
         @include('partial.Frontend.navbar')
+    
         <main class="py-4">
+        @if(session('message'))
+            <h2 class="alert alert-success">{{session('message')}}</h2>
+               @endif
             @yield('content')
         </main>
 
