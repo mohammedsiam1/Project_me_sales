@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+<link rel="stylesheet" href="{{asset('assets/Backend/css/style.css')}}">
 
 <div class="py-3 py-md-5 ">
     <div class="container">
@@ -12,6 +13,7 @@
                         <a  href="{{route('order.admin')}}" class="btn btn-outline-danger btn-sm  float-end ">Back</a> 
                         <a style="margin-right:6px" target="_blank" href="{{route('order_show_invoices.admin',$order->id)}}" class="btn btn-outline-warning btn-sm  float-end ">View Invoices</a>
                         <a style="margin-right:6px" href="{{route('order_download_invoices.admin',$order->id)}}" class="btn btn-outline-success btn-sm float-end ">Download Invoices</a>
+                        <a style="margin-right:6px" href="{{route('order_sendmail_invoices.admin',$order->id)}}" class="btn btn-outline-info btn-sm float-end ">Send Mail Invoices</a>
                     </h4>
                     <hr>
                     <div class="row">

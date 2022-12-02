@@ -56,6 +56,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::put('show/update/{id}', [OrderAdminController::class, 'updateOrder'])->name('update.order');
         Route::get('show/invoices/{id}', [OrderAdminController::class, 'show_invoices'])->name('order_show_invoices.admin');
         Route::get('download/invoices/{id}', [OrderAdminController::class, 'download_invoices'])->name('order_download_invoices.admin');
+        Route::get('sendmail/invoices/{id}', [OrderAdminController::class, 'sendMail'])->name('order_sendmail_invoices.admin');
 
         Route::resource('sitting', SittingController::class);
         Route::resource('user', UserController::class);
@@ -79,7 +80,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('show/{id}', [OrderController::class, 'show'])->name('show.order');
 
         Route::get('user-profile', [UserController::class, 'profile'])->name('edit.user');
-        Route::post('update-profile', [UserController::class, 'update'])->name('update.user');
+        Route::post('update-profile', [UserController::class, 'updateInfo'])->name('update.user');
 
         Route::get('password', [ChangePasswordController::class, 'index'])->name('password.index');
         Route::post('change-password', [ChangePasswordController::class, 'changePassword']);

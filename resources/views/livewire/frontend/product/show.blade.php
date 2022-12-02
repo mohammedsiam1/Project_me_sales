@@ -3,15 +3,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5 mt-3">
-                    <div class="bg-white border"style=" width:280px;  margin-left:150px">
+                    <div class="bg-white border" style=" width:280px;  margin-left:150px">
                         @if($product->productImages)
                         <!--<img src="{{asset('Upload/Products/Images/'.$product->productImages[0]->image)}}" class="w-100" alt="Img">-->
                         <div class="exzoom" id="exzoom" wire:ignore>
                             <!-- Images -->
-                            <div class="exzoom_img_box" >
+                            <div class="exzoom_img_box">
                                 <ul class='exzoom_img_ul'>
                                     @foreach($product->productImages as $productImg)
-                                    <li><img  src="{{asset('Upload/Products/Images/'.$productImg->image)}}" class="w-100" /></li>
+                                    <li><img src="{{asset('Upload/Products/Images/'.$productImg->image)}}" class="w-100" /></li>
                                     @endforeach
                                     ...
                                 </ul>
@@ -46,7 +46,10 @@
                                 <div>
                                     <span class="selling-price">${{$product->selling_price}}</span>
                                     <span class="original-price">${{$product->original_price}}</span>
-                                </div> <br>
+                                </div>
+                                <h6 class="product-brand">
+                                    Brand: {{$product->brand }}
+                                </h6>
 
                                 <div>
                                     @if($product->ColorProduct->count() > 0 )
@@ -119,28 +122,70 @@
 
         </div>
     </div>
+    <div class="py-3 py-md-5 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Related Products</h4>
+                    <hr>
+                </div>
+                @forelse($category->relatedproducts as $product)
+                <div class=" col-md-3">
+                    <div class="product-card">
+                        <div class="product-card-img">
+                            @if($product->productImages->count() >0)
+                            <a href="{{url('user/showProduct/'.$product->category->slug.'/'.$product->slug)}}">
+                                <img style=" height :200px" src="{{asset('Upload/Products/Images/'.$product->productImages[0]->image)}}" alt="{{$product->name}}">
+                            </a>
+                            @endif
+                        </div>
+                        <div class="product-card-body">
+                            <p class="product-brand">{{$product->brand}}</p>
+                            <h5 class="product-name">
+                                <a href="{{url('user/showProduct/'.$product->category->slug.'/'.$product->slug)}}">
+                                    {{$product->name}}
+                                </a>
+                            </h5>
+                            <div>
+                                <span class="selling-price">${{$product->selling_price}}</span>
+                                <span class="original-price">${{$product->original_price}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <h3>No Products Related  </h3>
+                @endforelse
+                <div class="text-center">
+                    <a href="{{url('user/category')}}" class="btn btn-outline-warning">Show More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 @push('scripts')
 <script>
-    $(function(){
+    $(function() {
 
-    $("#exzoom").exzoom({
+        $("#exzoom").exzoom({
 
-    // thumbnail nav options
-    "navWidth": 60,
-    "navHeight": 60,
-    "navItemNum": 5,
-    "navItemMargin": 7,
-    "navBorder": 1,
+            // thumbnail nav options
+            "navWidth": 60,
+            "navHeight": 60,
+            "navItemNum": 5,
+            "navItemMargin": 7,
+            "navBorder": 1,
 
-    // autoplay
-    "autoPlay": false,
+            // autoplay
+            "autoPlay": false,
 
-    // autoplay interval in milliseconds
-    "autoPlayTimeout": 2000
+            // autoplay interval in milliseconds
+            "autoPlayTimeout": 2000
+
+        });
 
     });
-
-    });
-    </script>
-    @endpush
+</script>
+@endpush

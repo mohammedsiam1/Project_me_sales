@@ -15,6 +15,9 @@ class Category extends Model
     public function products(){
         return $this->hasMany(Product::class);
     }
+    public function relatedproducts(){
+        return $this->hasMany(Product::class)->latest()->take(8);
+    }
     public function brands(){
         return $this->hasMany(Brand::class)->whereStatus(1);
     }

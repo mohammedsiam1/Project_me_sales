@@ -11,7 +11,7 @@
             </div>
             @forelse($newarrivals as $product)
             <div class=" col-md-3">
-            <div class="product-card" >
+              <div class="product-card" >
                         <div class="product-card-img" >
                         @if($product->selling_price >= 100)
                             <label class="stock bg-success">
@@ -42,14 +42,14 @@
                            
                         </div>
                     </div>
-                </div>
-                    @empty
-                    <h3>No Products Available  </h3>
-                    @endforelse
-                    <div class="text-center">
-                        <a href="{{url('user/category')}}" class="btn btn-outline-warning">Show More</a>
-                    </div>
-        </div>
+            </div>
+            @empty
+            <h3>No Products Available  </h3>
+            @endforelse
+            <div class="text-center">
+                <a href="{{url('user/category')}}" class="btn btn-outline-warning">Show More</a>
+            </div>
+</div>
     </div>
 </div>
 @endsection
