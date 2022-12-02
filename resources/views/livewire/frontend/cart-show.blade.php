@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            @if($productsCart != null)
+            @if(!$productsCart )
             <div class="row">
                 <div class="col-md-8 my-md-auto- mt-3">
                     Get the best deals & offers <a href="{{url('user/category')}}">shop now</a>

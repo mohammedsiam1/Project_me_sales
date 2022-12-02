@@ -115,9 +115,8 @@ class Checkout extends Component
     {
         $this->fullname = auth()->user()->first_name . ' ' . auth()->user()->last_name;
         $this->email = auth()->user()->email;
-        $this->phone = auth()->user()->phone;
-        $this->pincode = auth()->user()->userDetails->zip_code;
-        $this->address = auth()->user()->userDetails->address;
+        $this->phone = auth()->user()->phone; 
+      
         $totalProductAmount =  $this->totalProductAmount = $this->totalProductAmount();
         return view('livewire.frontend.checkout', [
             'totalProductAmount' => $totalProductAmount,

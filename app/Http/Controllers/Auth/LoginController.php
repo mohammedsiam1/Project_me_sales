@@ -30,10 +30,10 @@ class LoginController extends Controller
  */
 
  protected function authenticated(){
-    if(!auth()->user()->status == 1){
+    if(!auth()->user()->role ==1 && auth()->user()->status ==1 ){
         return redirect('/admin/dashboard')->with('message','welcome to Dashboard');
 
-    }else{
+    }elseif(auth()->user()->status ==1 ){
         return redirect('/home')->with('message','welcome');
     }
  }

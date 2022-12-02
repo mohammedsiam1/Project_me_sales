@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone');
             $table->boolean('role');
+            $table->boolean('status');
             $table->rememberToken();
             $table->timestamps();
         });
