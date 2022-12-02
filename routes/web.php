@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\Brand\Index;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\RoleController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -60,6 +61,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         Route::resource('sitting', SittingController::class);
         Route::resource('user', UserController::class);
+        Route::resource('roles', RoleController::class);
         Route::get('delete/user/{id}', [UserController::class, 'destroy'])->name('delete.user');
     });
 

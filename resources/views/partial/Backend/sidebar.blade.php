@@ -51,12 +51,22 @@
               <span class="menu-title">Sliders</span>
             </a>
           </li>
-          <li class="nav-item {{Request::is('admin/user')? 'active':''}}">
-            <a class="nav-link" href="{{route('user.index')}}">
-              <i class="mdi mdi-chart-pie menu-icon"></i>
+
+          <li class="nav-item {{Request::is('admin/user*')? 'active':''}}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basica" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-circle-outline menu-icon"></i>
               <span class="menu-title">Users</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="ui-basica">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item {{Request::is('admin/user')? 'active':''}}"> <a class="nav-link" href="{{route('user.index')}}">Add User</a></li>
+                <li class="nav-item {{Request::is('admin/user')? 'active':''}}"> <a class="nav-link" href="{{route('roles.index')}}">Permissions</a></li>
+              </ul>
+            </div>
           </li>
+
+         
           <li class="nav-item {{Request::is('admin/sitting')? 'active':''}}" >
             <a class="nav-link" href="{{route('sitting.index')}}">
               <i class="mdi mdi-chart-pie menu-icon"></i>

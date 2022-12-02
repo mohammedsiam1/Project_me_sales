@@ -11,6 +11,16 @@ use App\Http\Requests\Backend\UserRequest;
 
 class UserController extends Controller
 {
+
+
+    public function index()
+    {
+        $users=User::orderBy('id','desc')->paginate(10);
+       return view('Backend.User.index',compact('users'));
+    }
+
+
+    
     public function profile(){
         
         return view('Frontend.Collection.User-profile.profile');
@@ -43,17 +53,9 @@ class UserController extends Controller
     
 
 
-    public function index()
-    {
-        $users=User::orderBy('id','desc')->paginate(10);
-       return view('Backend.User.index',compact('users'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function create()
     {
         return view('Backend.User.create');

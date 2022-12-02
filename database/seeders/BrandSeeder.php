@@ -23,6 +23,7 @@ class BrandSeeder extends Seeder
         for($i=1;$i<=10;$i++){
         Brand::create([
             'name'=>$factory->firstName(),
+            'category_id'=>1,
             'slug'=>$factory->slug(),
             'status'=>1,
         ]);
