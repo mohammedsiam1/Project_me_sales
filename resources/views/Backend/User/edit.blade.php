@@ -69,6 +69,13 @@ update - user
                     <input type="text" name="phone"value="{{$user->phone}}" class="form-control"> 
                     @error('phone')<small class="text-danger">{{$message}}</small>@enderror  
                 </div>
+                <div class="col-md-6 mb-3">
+                <select class="form-control" name="role_name[]" multiple>
+                    @foreach($roles as $role )
+                    <option>{{$role}}</option>
+                    @endforeach
+                </select>
+                </div> 
                 <br>
                
 

@@ -59,6 +59,15 @@ create - user
                     @error('role')<small class="text-danger">{{$message}}</small>@enderror 
                 </div>
                 <div class="col-md-6 mb-3">
+                    <label>	status</label>
+                    <select name="status" class="form-control">
+                        <option value="1">Active</option>
+                        <option value="0">Un Active</option>
+                        
+                    </select> 
+                    @error('role')<small class="text-danger">{{$message}}</small>@enderror 
+                </div>
+                <div class="col-md-6 mb-3">
                     <label>password</label>
                     <input type="text" name="password" class="form-control">  
                     @error('password')<small class="text-danger">{{$message}}</small>@enderror 
@@ -68,6 +77,15 @@ create - user
                     <input type="text" name="phone" class="form-control"> 
                     @error('phone')<small class="text-danger">{{$message}}</small>@enderror  
                 </div>
+
+              <div class="col-md-6 mb-3">
+                <select class="form-control" name="role_name[]" multiple>
+                    @foreach($roles as $role )
+                    <option>{{$role}}</option>
+                    @endforeach
+                </select>
+                </div> 
+            
                 <br>
                
 

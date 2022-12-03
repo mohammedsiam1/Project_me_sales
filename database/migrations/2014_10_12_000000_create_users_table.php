@@ -21,7 +21,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone');
-            $table->boolean('role');
+            $table->boolean('role')->commit('1 meaning user 0 meaning admin');
+            $table->text('role_name')->nullable();
             $table->boolean('status');
             $table->rememberToken();
             $table->timestamps();

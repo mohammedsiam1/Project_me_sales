@@ -4,28 +4,59 @@ namespace App\Http\Controllers\Admin\User;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\Backend\UserRequest;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $users=User::orderBy('id','desc')->paginate(10);
        return view('Backend.User.index',compact('users'));
     }
 
+
+    
+    public function profile(){
+        
+        return view('Frontend.Collection.User-profile.profile');
+    }
+
+
+    public function updateInfo(Request $request){
+        $request->validate([
+            'first_name'=>['required','string'],
+            'last_name'=>['required','string'],
+            'zip_code'=>['required','digits:6'],
+            'phone'=>['required','digits:10'],
+            'address'=>['required','string','max:499'],
+        ]);
+        $user=User::findOrFail(Auth::user()->id);
+        $user->update([
+            'first_name'=>$request->first_name,
+            'last_name'=>$request->last_name,
+            'phone'=>$request->phone,
+        ]);
+
+        $user->userDetails()->updateOrCreate([
+            'user_id'=>$user->id
+        ],[
+            'zip_code'=>$request->zip_code,
+            'address'=>$request->address,
+        ]);
+        return redirect()->back()->with('message','User Profile Updated Successfully');
+    }
+
  
     public function create()
     {
-        return view('Backend.User.create');
+        $roles=Role::all()->pluck('name');
+       
+        return view('Backend.User.create',compact('roles'));
 
     }
 
@@ -39,6 +70,8 @@ class UserController extends Controller
         'role'=>$request->role,
         'password'=>Hash::make($request->password),
         'phone'=>$request->phone,
+        'status'=>$request->status,
+        'role_name'=>$request->role_name,
         ]);
        return view('Backend.User.index',compact('users'))->with('message','created Successfully');
         
@@ -54,8 +87,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user=User::findOrFail($id);
+        $roles=Role::all()->pluck('name');
 /*         $decrypted = Crypt::decrypt("$user->password");
- */        return view('Backend.User.edit',compact('user'));
+ */        return view('Backend.User.edit',compact('user','roles'));
     }
 
    
@@ -68,6 +102,8 @@ class UserController extends Controller
             'role'=>$request->role,
             'password'=>Hash::make($request->password),
             'phone'=>$request->phone,
+            'role_name'=>$request->role_name,
+
             ]);
            return redirect()->back()->with('message','Updated Successfully');
             

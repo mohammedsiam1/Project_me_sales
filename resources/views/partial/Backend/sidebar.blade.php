@@ -13,19 +13,20 @@
               <span class="menu-title">Orders</span>
             </a>
           </li>
+          @can('Categories')
           <li class="nav-item {{Request::is('admin/categories')? 'active':''}}">
             <a class="nav-link" href="{{url('admin/categories')}}">
               <i class="mdi mdi-home menu-icon"></i>
               <span class="menu-title">Categories</span>
             </a>
           </li>
+          @endcan
           <li class="nav-item {{Request::is('admin/brands')? 'active':''}}">
             <a class="nav-link" href="{{url('admin/brands')}}">
               <i class="mdi mdi-home menu-icon"></i>
               <span class="menu-title">Brands</span>
             </a>
-          </li>
-          
+          </li>     
           <li class="nav-item {{Request::is('admin/products*')? 'active':''}}">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="mdi mdi-circle-outline menu-icon"></i>

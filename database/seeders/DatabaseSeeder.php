@@ -30,15 +30,19 @@ class DatabaseSeeder extends Seeder
          'email'=>$factory->unique()->safeEmail,'password'=>bcrypt('123123123'),
          'phone'=>$factory->unique()->numberBetween(100000,9999999),
          'remember_token'=>Str::random(10),
-         'role'=>1,'status'=>1,]);
+         'role'=>1,
+         
+         'status'=>1,]);
         }
         $user=User::create(['first_name'=>'mohammed','last_name'=>'siam',
         'email'=>'moh@gmail.com','password'=>bcrypt('123123123'),
         'phone'=>$factory->unique()->numberBetween(100000,9999999),
         'remember_token'=>Str::random(10),
-        'role'=>0,'status'=>1,]);
+        'role'=>0,
+        'role_name'=>["owner"],
+        'status'=>1,]);
         
-        $role = Role::create(['name' => 'Admin']);
+        $role = Role::create(['name' => 'owner']);
         $permissions = Permission::pluck('id','id')->all();
         $role->syncPermissions($permissions);
         $user->assignRole([$role->id]);

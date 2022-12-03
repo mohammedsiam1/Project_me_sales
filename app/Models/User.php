@@ -38,6 +38,7 @@ protected $guarded=[];
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'role_name' => 'array',
     ];
     public function userDetails(){
         return $this->hasOne(UserDetail::class);
