@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\User;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,14 @@ use App\Http\Requests\Backend\UserRequest;
 
 class UserController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:Users', ['only' => ['index']]);
+         $this->middleware('permission:Add User', ['only' => ['create','store']]);
+         $this->middleware('permission:Add User', ['only' => ['edit','update']]);
+         $this->middleware('permission:Add User', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $users=User::orderBy('id','desc')->paginate(10);
@@ -54,7 +63,7 @@ class UserController extends Controller
  
     public function create()
     {
-        $roles=Role::all()->pluck('name');
+        $roles=Role::pluck('name','name')->all();
        
         return view('Backend.User.create',compact('roles'));
 
@@ -73,6 +82,8 @@ class UserController extends Controller
         'status'=>$request->status,
         'role_name'=>$request->role_name,
         ]);
+        $users->assignRole($request->input('role_name'));
+
        return view('Backend.User.index',compact('users'))->with('message','created Successfully');
         
     }
@@ -100,11 +111,13 @@ class UserController extends Controller
             'first_name'=>$request->first_name,
             'last_name'=>$request->last_name,
             'role'=>$request->role,
-            'password'=>Hash::make($request->password),
             'phone'=>$request->phone,
+            'status'=>$request->status,
             'role_name'=>$request->role_name,
-
             ]);
+            DB::table('model_has_roles')->where('model_id', $id)->delete();
+            $users->assignRole($request->input('role_name'));
+
            return redirect()->back()->with('message','Updated Successfully');
             
     }

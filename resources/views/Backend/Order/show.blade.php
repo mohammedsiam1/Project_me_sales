@@ -11,9 +11,19 @@
                     <h4 class=" text-primary">
                         My Order Details
                         <a  href="{{route('order.admin')}}" class="btn btn-outline-danger btn-sm  float-end ">Back</a> 
+                        @can('View Invoices')
                         <a style="margin-right:6px" target="_blank" href="{{route('order_show_invoices.admin',$order->id)}}" class="btn btn-outline-warning btn-sm  float-end ">View Invoices</a>
+                      @endcan 
+
+
+
+
+                      @can('Download Invoices')
                         <a style="margin-right:6px" href="{{route('order_download_invoices.admin',$order->id)}}" class="btn btn-outline-success btn-sm float-end ">Download Invoices</a>
+                       @endcan
+                      @can('Send Mail Invoices')
                         <a style="margin-right:6px" href="{{route('order_sendmail_invoices.admin',$order->id)}}" class="btn btn-outline-info btn-sm float-end ">Send Mail Invoices</a>
+                      @endcan                   
                     </h4>
                     <hr>
                     <div class="row">
@@ -101,6 +111,7 @@
         </div>
         <br>
         
+        @can('update status')
             <div class="card">
                 <div class="card-body">
                     <h4>Order progress (Order Status Update)</h4>
@@ -131,6 +142,7 @@
                     
                 </div>
             </div>
+            @endcan
     </div>
 </div>
 @endsection

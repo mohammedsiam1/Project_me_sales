@@ -11,6 +11,14 @@ use App\Http\Requests\CategoryRequest;
 
 class CategoriesController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:Categories', ['only' => ['index']]);
+         $this->middleware('permission:Add Category', ['only' => ['create','store']]);
+         $this->middleware('permission:Edit Category', ['only' => ['edit','update']]);
+         $this->middleware('permission:Delete Category', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
        return view ('Backend.Category.index');

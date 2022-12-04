@@ -59,22 +59,27 @@ update - user
                     </select> 
                     @error('role')<small class="text-danger">{{$message}}</small>@enderror 
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label>password</label>
-                    <input type="text" name="password" class="form-control">  
-                    @error('password')<small class="text-danger">{{$message}}</small>@enderror 
-                </div>
+               
                 <div class="col-md-6 mb-3">
                     <label>phone</label>
                     <input type="text" name="phone"value="{{$user->phone}}" class="form-control"> 
                     @error('phone')<small class="text-danger">{{$message}}</small>@enderror  
                 </div>
                 <div class="col-md-6 mb-3">
-                <select class="form-control" name="role_name[]" multiple>
+                    <label>status</label>
+                    <select class="form-control" name="status">
+                    <option value="1">Active</option>
+                    <option value="0">Unactive</option>
+                </select>               
+                   @error('status')<small class="text-danger">{{$message}}</small>@enderror  
+                </div>
+                <div class="col-md-6 mb-3">
+                <label>Permission</label>
+              <select class="form-control" name="role_name[]" multiple >
                     @foreach($roles as $role )
-                    <option>{{$role}}</option>
+                    <option  @if ('role_name') {{ 'selected' }} @endif>{{$role}}</option>
                     @endforeach
-                </select>
+                </select> 
                 </div> 
                 <br>
                

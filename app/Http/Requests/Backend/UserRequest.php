@@ -41,7 +41,6 @@ class UserRequest extends FormRequest
                         'first_name'=>'required|string',
                         'last_name'=>'required|string',
                         'role'=>'required|numeric',
-                        'password'=>'required|max:15|min:8',
                         'phone'=>'required',
                     ];
                 }

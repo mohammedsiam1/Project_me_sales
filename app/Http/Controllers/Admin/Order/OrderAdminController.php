@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderAdminController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:Orders', ['only' => ['index']]);
+         $this->middleware('permission:Orders', ['only' => ['create','store']]);
+         $this->middleware('permission:Orders', ['only' => ['edit','update']]);
+         $this->middleware('permission:Orders', ['only' => ['destroy']]);
+    }
     public function index()
     {
 

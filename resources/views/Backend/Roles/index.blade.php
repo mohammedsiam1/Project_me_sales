@@ -22,7 +22,9 @@ permissions
                                        Permissions Users
                                     
                                     </span>
+                                    @can('Add Permissions')
                                     <a class="btn btn-outline-primary btn-sm float-end" href="{{ route('roles.create') }}">Add New Permission</a>
+                                    @endcan
                                       </h4><br>
                                     
                                 </div>
@@ -52,8 +54,13 @@ permissions
                                 <td>{{ $role->name }}</td>
                                 <td>
 
+                                @can('Add Permissions')
                                     <a class="btn btn-outline-success btn-sm" href="{{ route('roles.show', $role->id) }}">Show</a>
+                                @endcan
+                                    @can('Edit Permissions')
                                     <a class="btn btn-outline-primary btn-sm" href="{{ route('roles.edit', $role->id) }}">Edit</a>
+                                    @endcan
+                                @can('Delete Permissions')
                                     @if ($role->name !== 'owner')
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy',
                                     $role->id], 'style' => 'display:inline']) !!}
@@ -61,6 +68,7 @@ permissions
                                     {!! Form::close() !!}
 
                                     @endif
+                                @endcan
 
 
                                 </td>

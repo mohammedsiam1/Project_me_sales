@@ -1,14 +1,12 @@
 @extends('layouts.admin')
-@section('css')
 <!--Internal  Font Awesome -->
 <link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
 <!--Internal  treeview -->
 <link href="{{URL::asset('assets/plugins/treeview/treeview-rtl.css')}}" rel="stylesheet" type="text/css" />
 @section('title')
-تعديل الصلاحيات - مورا سوفت للادارة القانونية
-@stop
 @endsection
-@section('page-header')
+
+@section('content')
 <!-- breadcrumb -->
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
@@ -19,15 +17,12 @@
     </div>
 </div>
 <!-- breadcrumb -->
-@endsection
-@section('content')
-
 @if (count($errors) > 0)
 <div class="alert alert-danger">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>خطا</strong>
+    <strong>Error</strong>
     <ul>
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
@@ -53,7 +48,7 @@
                     <!-- col -->
                     <div class="col-lg-4">
                         <ul id="treeview1">
-                            <li><a href="#">الصلاحيات</a>
+                            <li><a href="#">permissions</a>
                                 <ul>
                                     <li>
                                         @foreach($permission as $value)
@@ -68,7 +63,7 @@
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-main-primary">تحديث</button>
+                        <button type="submit" class="btn btn-outline-primary">Update </button>
                     </div>
                     <!-- /col -->
                 </div>
@@ -83,7 +78,7 @@
 <!-- main-content closed -->
 {!! Form::close() !!}
 @endsection
-@section('js')
+@section('scripts')
 <!-- Internal Treeview js -->
 <script src="{{URL::asset('assets/plugins/treeview/treeview.js')}}"></script>
 @endsection
